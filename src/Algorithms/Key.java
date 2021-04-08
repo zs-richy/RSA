@@ -57,4 +57,19 @@ public class Key {
         System.out.println("Secret key: " + this.secretKey[0] + " | " + this.secretKey[1]);
     }
 
+    public void generateKeys(BigInteger prime1, BigInteger prime2, BigInteger e) {
+        BigInteger n = prime1.multiply(prime2);
+        BigInteger phi_n = prime1.subtract(BigInteger.ONE).multiply(prime2.subtract(BigInteger.ONE));
+
+
+        BigInteger e_inverz = BigInteger.ZERO;
+        e_inverz = inverseCalc(phi_n, e);
+        System.out.println(e_inverz.toString());
+
+        System.out.println(prime1.toString() + " | " + prime2.toString() + " | " + phi_n.toString() + " | " + e.toString());
+
+        this.publicKey = new BigInteger[] {n, e};
+        this.secretKey = new BigInteger[] {n, e_inverz};
+    }
+
 }

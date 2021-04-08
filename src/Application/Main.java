@@ -48,6 +48,8 @@ public class Main {
 
         Encrypt(kulcs, BigInteger.valueOf(12345678));
         Decrypt(kulcs, BigInteger.valueOf(88888888));
+        kulcs.generateKeys(BigInteger.valueOf(293), BigInteger.valueOf(317), BigInteger.valueOf(1079));
+        kulcs.showYourself();
 
     }
 
