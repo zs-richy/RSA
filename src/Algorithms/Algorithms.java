@@ -207,4 +207,28 @@ public class Algorithms {
 
     }
 
+    public static void CRT(BigInteger p, BigInteger q, BigInteger n, BigInteger d, BigInteger c) {
+        BigInteger dp = d.mod(p.subtract(BigInteger.ONE));
+        BigInteger dq = d.mod(q.subtract(BigInteger.ONE));
+        System.out.println("dp: " + dp + " dq: " + dq);
+
+        BigInteger mp = FME(p,c,dp);
+        BigInteger mq = FME(q,c,dq);
+        System.out.println("mp: " + mp + " mq: " + mq);
+
+        BigInteger m1 = mp.mod(p);
+        BigInteger m2 = mq.mod(q);
+        System.out.println("m1: " + m1 + " m2: " + m2);
+
+        BigInteger yp = EEA(p,q)[1].multiply(BigInteger.valueOf(-1).pow(EEA(p,q)[3].intValue()));
+        BigInteger yq = EEA(p,q)[2].multiply(BigInteger.valueOf(-1).pow(EEA(p,q)[3].intValue()+1));
+        System.out.println("yp: " + yp + " yq: " + yq);
+
+        BigInteger message1 = mp.multiply(yq).multiply(q);
+        BigInteger message2 = mq.multiply(yp).multiply(p);
+
+        System.out.println("Message: " + (message1.add(message2)).mod(n));
+
+    }
+
 }
