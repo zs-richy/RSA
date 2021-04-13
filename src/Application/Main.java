@@ -7,6 +7,7 @@ import static Algorithms.Cypher.*;
 import static Algorithms.Generate.generatePrime;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 
 public class Main {
 
@@ -18,17 +19,25 @@ public class Main {
         MRPT(BigInteger.valueOf(577),BigInteger.valueOf(13));
         MRPT(BigInteger.valueOf(438592389),BigInteger.valueOf(23));
 
-        System.out.println(generatePrime(128));
-
+        //kulcs.generateKeys(BigInteger.valueOf(293), BigInteger.valueOf(317), BigInteger.valueOf(1079));
         Key kulcs = new Key();
-        kulcs.generateKeys(256);
+        kulcs.generateKeys(128);
         kulcs.showYourself();
 
-        //kulcs.generateKeys(BigInteger.valueOf(293), BigInteger.valueOf(317), BigInteger.valueOf(1079));
+        try {
+            BigInteger enc = Encrypt(kulcs, "Phase01 Phase02 Phase03 Phase04 Phase05 Phase06 Phase07 Phase08 Phase09  Phase10 Phase11 Phase12");
+            System.out.println("Encrypted text: " + enc);
+            System.out.println("Decrypted text: " + DecryptString(kulcs, enc));
+        } catch (Exception e) {
+            System.out.println("Message too long for this key! Try with blockEncrypt method!");
+        }
 
-        BigInteger enc = Encrypt(kulcs, "Text to encrypt");
-        System.out.println("Encrypted text: " + enc);
-        System.out.println("Decrypted text: " + DecryptString(kulcs, enc));
+        ArrayList<BigInteger> encText = blockEncrypt(kulcs, "Phase01 Phase02 Phase03 Phase04 Phase05 Phase06 Phase07 Phase08 Phase09  Phase10 Phase11 Phase12");
+        System.out.println("Encrypted text: " + encText);
+        System.out.println("Decrypted text: ");
+        for (BigInteger e : encText) {
+            System.out.print(DecryptString(kulcs, e) + "|");
+        }
 
     }
 
