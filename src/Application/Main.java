@@ -18,6 +18,8 @@ public class Main {
         FME(new BigInteger("2344"), new BigInteger("32542356577997792178912345"), new BigInteger("4234254779977281234577"));
         MRPT(BigInteger.valueOf(577),BigInteger.valueOf(13));
         MRPT(BigInteger.valueOf(438592389),BigInteger.valueOf(23));
+        CRT(BigInteger.valueOf(463), BigInteger.valueOf(547), BigInteger.valueOf(253261),
+                BigInteger.valueOf(166379),BigInteger.valueOf(47));
 
         //kulcs.generateKeys(BigInteger.valueOf(293), BigInteger.valueOf(317), BigInteger.valueOf(1079));
         Key kulcs = new Key();
@@ -38,6 +40,7 @@ public class Main {
         for (BigInteger e : encText) {
             System.out.print(DecryptString(kulcs, e) + "|");
         }
+        System.out.println();
 
     }
 
